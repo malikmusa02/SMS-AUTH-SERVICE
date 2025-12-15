@@ -23,7 +23,7 @@ public class RoleController {
     }
 
     // CREATE
-    @PreAuthorize("hasRole('director')")
+    // @PreAuthorize("hasRole('director')")
     @PostMapping("/create")
     public ResponseEntity<RoleResponse> createRole(@RequestBody RoleDTO role) {
         RoleResponse createdRole = roleService.createRole(role);
