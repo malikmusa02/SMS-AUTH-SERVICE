@@ -45,7 +45,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/users/**", "/classrooms/**","/classroom-types/**").permitAll()
+                        .requestMatchers("/users/**","roles/**", "/classrooms/**","/classroom-types/**").permitAll()
                         .requestMatchers("/teachers/create").hasRole("director")
                         .requestMatchers("/roles/**").hasRole("director")
                         .requestMatchers("/office-staff/create").hasRole("director")
