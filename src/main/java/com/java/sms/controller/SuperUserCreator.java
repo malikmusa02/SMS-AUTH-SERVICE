@@ -42,9 +42,17 @@ public class SuperUserCreator implements CommandLineRunner {
         //  Check if Director already exists in Django
 
 
-        DirectorsResponse resp;
+        
+
          try {
-            resp = directorClient.getAllDirectors();
+            DirectorsResponse resp; = directorClient.getAllDirectors();
+            List<DirectorDTO> existingDirectors = resp.getDirectors();
+
+             System.out.println("\n\n\n\n\n\n" + "Object of director : "+ existingDirectors);
+            if (!existingDirectors.isEmpty()) {
+            System.out.println("Director already exists in Django, skipping superuser creation.");
+            return;
+        }
 
         } catch (FeignException.Unauthorized e) {
             log.warn("Director service unauthorized, skipping startup sync");
@@ -52,13 +60,7 @@ public class SuperUserCreator implements CommandLineRunner {
             log.error("Startup sync failed", e);
         }
 
-        List<DirectorDTO> existingDirectors = resp.getDirectors();
         
-        System.out.println("\n\n\n\n\n\n" + "Object of director : "+ existingDirectors);
-        if (!existingDirectors.isEmpty()) {
-            System.out.println("Director already exists in Django, skipping superuser creation.");
-            return;
-        }
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("=== Create Superuser Director ===");
