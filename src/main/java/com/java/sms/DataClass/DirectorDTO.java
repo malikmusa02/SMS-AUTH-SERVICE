@@ -45,8 +45,6 @@ public class DirectorDTO {
 
     @JsonProperty("panNo")
     private String panNo;
-    
-    private Set<RoleDTO> roles;
     private Boolean active = true;
 }
 
