@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class StudentFeeRequest {
+    
     @NotNull
     private Long studentYearId;
 

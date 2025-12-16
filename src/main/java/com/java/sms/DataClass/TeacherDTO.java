@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,9 +18,16 @@ import java.util.Set;
 @AllArgsConstructor
 public class TeacherDTO {
 
+    @JsonProperty("user")
     private Long user;       // user_id in Django
+
+    @JsonProperty("firstName")
     private String firstName;
+
+    @JsonProperty("middleName")
     private String middleName;
+
+    @JsonProperty("lastName")
     private String lastName;
 
     @NotNull
@@ -31,11 +39,18 @@ public class TeacherDTO {
     @Column(nullable = false)
     private String password;
     private MultipartFile image;
+
+    @JsonProperty("panNo")
     private String phoneNo;
     private String qualification;
     private String gender;
+
+    @JsonProperty("aadharNo")
     private String aadharNo;
+
+    @JsonProperty("panNo")
     private String panNo;
+    
     private Set<RoleDTO> roles;
     private Boolean active = true;
 
